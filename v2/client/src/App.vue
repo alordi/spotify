@@ -9,7 +9,7 @@
 <style>
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -17,12 +17,17 @@
 }
 
 #title {
-  color: green;
-  text-shadow: 2px 2px black;
+  color: black;
+  font-weight: bold;
+  font-style: italic
 }
 
 .dd {
   margin: 20px;
+}
+
+.active {
+  color: #101820;
 }
 
 #nav {
@@ -35,6 +40,6 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #101820;
 }
 </style>

@@ -7,11 +7,11 @@
     <div class="main" v-if="logged_in">
       <h1> Welcome, {{username}}. </h1>
       <h3>
-      <b-card bg-variant="success" text-variant="white" header="Hipster Score" class="mx-auto" align="center" style="max-width: 16rem;">
+      <b-card bg-variant="dark" text-variant="warning" border-variant="warning" header="Hipster Score" class="mx-auto" align="center" style="max-width: 16rem;">
         <h1>{{score}}</h1>
       </b-card>
       </h3>
-      <b-dropdown right text="Artists shown" variant="success" class="dd">
+      <b-dropdown right text="Artists shown" variant="warning" class="dd">
         <b-dropdown-item v-if="curr_artist_limit==5" active='true'> 5 </b-dropdown-item>
         <b-dropdown-item v-else v-on:click="getArtists(5)"> 5 </b-dropdown-item>
         <b-dropdown-item v-if="curr_artist_limit==10" active='true'> 10 </b-dropdown-item>
@@ -21,7 +21,7 @@
         <b-dropdown-item v-if="curr_artist_limit==50" active='true'> 50 </b-dropdown-item>
         <b-dropdown-item v-else v-on:click="getArtists(50)"> 50 </b-dropdown-item>
       </b-dropdown>
-      <b-dropdown right text="Songs shown" variant="success" class="dd">
+      <b-dropdown right text="Songs shown" variant="warning" class="dd">
         <b-dropdown-item v-if="curr_song_limit==10" active='true'> 10 </b-dropdown-item>
         <b-dropdown-item v-else v-on:click="getSongs(10)"> 10 </b-dropdown-item>
         <b-dropdown-item v-if="curr_song_limit==20" active='true'> 20 </b-dropdown-item>
@@ -33,7 +33,7 @@
         <b-dropdown-item v-if="curr_song_limit==50" active='true'> 50 </b-dropdown-item>
         <b-dropdown-item v-else v-on:click="getSongs(50)"> 50 </b-dropdown-item>
       </b-dropdown>
-      <b-dropdown right text="Time Range" variant="success" class="dd">
+      <b-dropdown right text="Time Range" variant="warning" class="dd">
         <b-dropdown-item v-if="curr_time=='short_term'" active='true'> Short (~ 4 weeks) </b-dropdown-item>
         <b-dropdown-item v-else v-on:click="changeTime('short_term')"> Short (~ 4 weeks) </b-dropdown-item>
         <b-dropdown-item v-if="curr_time=='medium_term'" active='true'> Medium (~ 6 months) </b-dropdown-item>
