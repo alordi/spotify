@@ -17,6 +17,7 @@ var cookieSession = require('cookie-session');
 var client_id = '109cf6a75b70429f85afc68eef85693d'; // Your client id
 var client_secret = '451d4a11befd4f109fbd1e0cd4602960'; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+const spotify_url = 'https://api.spotify.com/v1/me'; //spotify url
 
 /**
  * Generates a random string containing numbers and letters
@@ -77,25 +78,40 @@ app.get('/me', function(req, res) {
 
   // use the access token to access the Spotify Web API
   request.get(options, function(error, response, body) {
-    console.log(body);
-    console.log(document.cookie);
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(body));
   });
 
 });
 
-app.get('/playlists', function(req, res) {
+app.get('/songs', function(req, res) {
+  console.log(req.query)
   var options = {
-    url: 'https://api.spotify.com/v1/me/playlists',
+    url: spotify_url + '/top/tracks?limit=' + req.query.limit + '&time_range=' + req.query.time,
     headers: { 'Authorization': 'Bearer ' + req.session.access_token },
     json: true
   };
 
   // use the access token to access the Spotify Web API
   request.get(options, function(error, response, body) {
-    console.log(body);
-    res.redirect('/#abc');
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(body));
+  });
+
+});
+
+app.get('/artists', function(req, res) {
+  console.log(req.query)
+  var options = {
+    url: spotify_url + '/top/artists?limit=' + req.query.limit + '&time_range=' + req.query.time,
+    headers: { 'Authorization': 'Bearer ' + req.session.access_token },
+    json: true
+  };
+
+  // use the access token to access the Spotify Web API
+  request.get(options, function(error, response, body) {
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(body));
   });
 
 });

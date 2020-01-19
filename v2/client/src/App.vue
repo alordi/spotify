@@ -1,21 +1,28 @@
 <template>
   <div id="app">
-    {{ info }}
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about" hash="#abc">About</router-link>
+      <h2 id="title"> Austin's Spotify App </h2>
     </div>
     <router-view/>
   </div>
 </template>
-
 <style>
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+#title {
+  color: green;
+  text-shadow: 2px 2px black;
+}
+
+.dd {
+  margin: 20px;
 }
 
 #nav {
