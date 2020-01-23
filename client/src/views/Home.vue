@@ -107,7 +107,6 @@ export default {
           }
         })
         .then(response => {
-          console.log(response)
           this.artists = response.data.items
         })
       await axios
@@ -118,10 +117,8 @@ export default {
           }
         })
         .then(response => {
-          console.log(response)
           this.songs = response.data.items
         })
-      console.log(this.songs)
     }
   },
   methods: {

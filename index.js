@@ -85,7 +85,6 @@ app.get('/me', function(req, res) {
 });
 
 app.get('/songs', function(req, res) {
-  console.log(req.query)
   var options = {
     url: spotify_url + '/top/tracks?limit=' + req.query.limit + '&time_range=' + req.query.time,
     headers: { 'Authorization': 'Bearer ' + req.session.access_token },
@@ -101,7 +100,6 @@ app.get('/songs', function(req, res) {
 });
 
 app.get('/artists', function(req, res) {
-  console.log(req.query)
   var options = {
     url: spotify_url + '/top/artists?limit=' + req.query.limit + '&time_range=' + req.query.time,
     headers: { 'Authorization': 'Bearer ' + req.session.access_token },
