@@ -14,9 +14,9 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 
-var client_id = '109cf6a75b70429f85afc68eef85693d'; // Your client id
-var client_secret = '451d4a11befd4f109fbd1e0cd4602960'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var client_id = process.env.ID1; // Your client id
+var client_secret = process.env.ID2; // Your secret
+var redirect_uri = process.env.CALLBACK; // Your redirect uri
 const spotify_url = 'https://api.spotify.com/v1/me'; //spotify url
 
 /**
