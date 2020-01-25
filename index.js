@@ -13,6 +13,8 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
+var https = require('https')
+var fs = require('fs')
 
 var client_id = process.env.ID1; // Your client id
 var client_secret = process.env.ID2; // Your secret
@@ -204,5 +206,10 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
-console.log('Listening on 8888');
-app.listen(8888);
+https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+  }, app).listen(8888, function () {
+  console.log('Listening on 8888');
+});
+
