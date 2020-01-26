@@ -21,7 +21,7 @@ RUN cd /app \
         -keyout server.key -out server.cert -days 10 \
         -subj "/C=US/ST=Pennsylvania/L=Lansdale/O=Private/OU=IT/CN=austinsapp.com"
 
-EXPOSE 80
+EXPOSE 443
 
 SHELL [ "bash", "-c" ]
 
