@@ -1,10 +1,8 @@
 FROM node:slim
 
-ARG DOMAIN="localhost"
-
 ENV ID1="id1" \
     ID2="id2" \
-    CALLBACK="https://${DOMAIN}:8888/callback"
+    CALLBACK="https://stats.austinsapp.com/callback"
 
 COPY . /app/
 
@@ -21,9 +19,11 @@ RUN cd /app \
     && openssl req -nodes -new -x509 \
         -newkey rsa:2048  \
         -keyout server.key -out server.cert -days 10 \
-        -subj "/C=US/ST=Pennsylvania/L=Lansdale/O=Private/OU=IT/CN=${DOMAIN}"
+        -subj "/C=US/ST=Pennsylvania/L=Lansdale/O=Private/OU=IT/CN=austinsapp.com"
 
+EXPOSE 80
 
-EXPOSE 8888
+SHELL [ "bash", "-c" ]
 
 CMD ["node", "index.js"]
+

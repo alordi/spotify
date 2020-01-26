@@ -209,7 +209,7 @@ app.get('/refresh_token', function(req, res) {
 https.createServer({
   key: fs.readFileSync('server.key'),
   cert: fs.readFileSync('server.cert')
-  }, app).listen(8888, function () {
-  console.log('Listening on 8888');
+  }, app).listen(80, function () {
+  console.log('Listening on 80');
 });
 
