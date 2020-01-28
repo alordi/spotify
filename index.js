@@ -18,7 +18,8 @@ var fs = require('fs')
 
 var client_id = process.env.ID1; // Your client id
 var client_secret = process.env.ID2; // Your secret
-var redirect_uri = process.env.CALLBACK; // Your redirect uri
+var redirect_uri = "https://" + process.env.DOMAIN + "/callback"; // Your redirect uri
+var cert_dir = "/certs";  
 const spotify_url = 'https://api.spotify.com/v1/me'; //spotify url
 
 /**
@@ -207,10 +208,11 @@ app.get('/refresh_token', function(req, res) {
 });
 
 https.createServer({
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
-  }, app).listen(443, function () {
-  console.log('Listening on 443');
+  key: fs.readFileSync(cert_dir + '/privkey.pem', 'utf8'),
+  cert: fs.readFileSync(cert_dir + '/cert.pem', 'utf8'),
+  ca: fs.readFileSync(cert_dir + '/chain.pem', 'utf8')
+  }, app).listen(8443, function () {
+  console.log('Listening on 8443');
 });
 
 // app.listen(8888);

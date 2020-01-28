@@ -2,26 +2,26 @@ FROM node:slim
 
 ENV ID1="id1" \
     ID2="id2" \
-    CALLBACK="https://stats.austinsapp.com/callback"
+    DOMAIN="stats.austinsapp.com"
 
 COPY . /app/
 
 WORKDIR /app
 
 RUN apt update -y \
-    && apt install -y openssl \
+    && useradd -M -s /sbin/nologin app \
     && npm install \
     && cd client \
     && npm install \
-    && npm run build     
+    && npm run build \
+    && chown -R app:app /app \
+    && mkdir /certs \
+    && chown app:app /certs \
+    && chmod +x /app/copyCerts.sh
 
-RUN cd /app \
-    && openssl req -nodes -new -x509 \
-        -newkey rsa:2048  \
-        -keyout server.key -out server.cert -days 10 \
-        -subj "/C=US/ST=Pennsylvania/L=Lansdale/O=Private/OU=IT/CN=austinsapp.com"
+EXPOSE 8443
 
-EXPOSE 443
+USER app
 
 SHELL [ "bash", "-c" ]
 
