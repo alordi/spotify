@@ -22,7 +22,7 @@ In the root directory:
 
 # To Run Prod Builds
 * Using a docker image and a linux machine 
-* docker run -d -v certs:/certs -p 443:8443 -e ID1=<<CLIENT ID>> -e ID2=<<CLIENT SECRET>> <<IMAGE NAME>>
+``` docker run -d -v certs:/certs -p 443:8443 -e ID1='CLIENT ID' -e ID2='CLIENT SECRET' 'IMAGE NAME' ```
 * The app will run on port 443(HTTPS) on your domain
 
 
