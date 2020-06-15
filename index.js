@@ -82,7 +82,7 @@ app.get('/me', function(req, res) {
   // use the access token to access the Spotify Web API
   request.get(options, function(error, response, body) {
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(body));
+    res.send(JSON.stringify(body));
   });
 
 });
@@ -97,7 +97,7 @@ app.get('/songs', function(req, res) {
   // use the access token to access the Spotify Web API
   request.get(options, function(error, response, body) {
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(body));
+    res.send(JSON.stringify(body));
   });
 
 });
@@ -112,7 +112,22 @@ app.get('/artists', function(req, res) {
   // use the access token to access the Spotify Web API
   request.get(options, function(error, response, body) {
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(body));
+    res.send(JSON.stringify(body));
+  });
+
+});
+
+app.get('/features', function(req, res) {
+  var options = {
+    url: 'https://api.spotify.com/v1/audio-features/?ids=' + req.query.songIds.join(),
+    headers: { 'Authorization': 'Bearer ' + req.session.access_token },
+    json: true
+  };
+
+  // use the access token to access the Spotify Web API
+  request.get(options, function(error, response, body) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(body));
   });
 
 });
@@ -215,6 +230,6 @@ https.createServer({
   console.log('Listening on 8443');
 });
 
-// app.listen(8888);
-// console.log("Listening on 8888");
+app.listen(8888);
+console.log("Listening on 8888");
 
