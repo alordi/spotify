@@ -224,11 +224,11 @@ app.get('/refresh_token', function(req, res) {
 });
 
 https.createServer({
-  key: fs.readFileSync(cert_dir + '/privkey.pem', 'utf8'),
-  cert: fs.readFileSync(cert_dir + '/cert.pem', 'utf8'),
-  ca: fs.readFileSync(cert_dir + '/chain.pem', 'utf8')
-  }, app).listen(8443, function () {
-  console.log('Listening on 8443');
+  // key: fs.readFileSync(cert_dir + '/privkey.pem', 'utf8'),
+  // cert: fs.readFileSync(cert_dir + '/cert.pem', 'utf8'),
+  // ca: fs.readFileSync(cert_dir + '/chain.pem', 'utf8')
+  }, app).listen(8080, function () {
+  console.log('Listening on 8080');
 });
 
 

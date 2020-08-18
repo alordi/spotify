@@ -2,7 +2,7 @@ FROM node:slim
 
 ENV ID1="id1" \
     ID2="id2" \
-    DOMAIN="stats.austinsapp.com"
+    DOMAIN="stats.alordi.com"
 
 COPY . /app/
 
@@ -14,12 +14,12 @@ RUN apt update -y \
     && cd client \
     && npm install \
     && npm run build \
-    && chown -R app:app /app \
-    && mkdir /certs \
-    && chown app:app /certs \
-    && chmod +x /app/copyCerts.sh
+    && chown -R app:app /app
+    # && mkdir /certs \
+    # && chown app:app /certs \
+    # && chmod +x /app/copyCerts.sh
 
-EXPOSE 8443
+EXPOSE 8080
 
 USER app
 
