@@ -19,6 +19,7 @@ var fs = require('fs')
 var client_id = process.env.ID1; // Your client id
 var client_secret = process.env.ID2; // Your secret
 var redirect_uri = "https://" + process.env.DOMAIN + "/callback"; // Your redirect uri
+//var redirect_uri = 'http://localhost:8888/callback';
 var cert_dir = "/certs";  
 const spotify_url = 'https://api.spotify.com/v1/me'; //spotify url
 
@@ -230,6 +231,4 @@ https.createServer({
   console.log('Listening on 8443');
 });
 
-app.listen(8888);
-console.log("Listening on 8888");
 

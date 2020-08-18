@@ -14,6 +14,8 @@ class ScoreService {
     var energyScore = 0
     var scores = []
     var songIds = []
+    var nulls = 0
+    var total = 50
     await axios
       .get('/artists', {
         params: {
@@ -49,36 +51,40 @@ class ScoreService {
         features = response.data.audio_features
       })
     for (i = 0; i < 50; i++) {
-      if (i < 10) {
-        songScore = songScore + (songs[i].popularity * 1.5)
-        artistScore = artistScore + (artists[i].popularity * 1.5)
-        happyScore = happyScore + (features[i].valence * 1.5)
-        danceScore = danceScore + (features[i].danceability * 1.5)
-        energyScore = energyScore + (features[i].energy * 1.5)
-      } else if (i < 20) {
-        songScore = songScore + (songs[i].popularity * 1.25)
-        artistScore = artistScore + (artists[i].popularity * 1.25)
-        happyScore = happyScore + (features[i].valence * 1.25)
-        danceScore = danceScore + (features[i].danceability * 1.25)
-        energyScore = energyScore + (features[i].energy * 1.25)
-      } else if (i < 30) {
-        songScore = songScore + songs[i].popularity
-        artistScore = artistScore + artists[i].popularity
-        happyScore = happyScore + features[i].valence
-        danceScore = danceScore + features[i].danceability
-        energyScore = energyScore + features[i].energy
-      } else if (i < 40) {
-        songScore = songScore + (songs[i].popularity * 0.75)
-        artistScore = artistScore + (artists[i].popularity * 0.75)
-        happyScore = happyScore + (features[i].valence * 0.75)
-        danceScore = danceScore + (features[i].danceability * 0.75)
-        energyScore = energyScore + (features[i].energy * 0.75)
+      if (features[i] == null) {
+        nulls = nulls + 1
       } else {
-        songScore = songScore + (songs[i].popularity * 0.5)
-        artistScore = artistScore + (artists[i].popularity * 0.5)
-        happyScore = happyScore + (features[i].valence * 0.5)
-        danceScore = danceScore + (features[i].danceability * 0.5)
-        energyScore = energyScore + (features[i].energy * 0.5)
+        if (i < 10) {
+          songScore = songScore + (songs[i].popularity * 1.5)
+          artistScore = artistScore + (artists[i].popularity * 1.5)
+          happyScore = happyScore + (features[i].valence * 1.5)
+          danceScore = danceScore + (features[i].danceability * 1.5)
+          energyScore = energyScore + (features[i].energy * 1.5)
+        } else if (i < 20) {
+          songScore = songScore + (songs[i].popularity * 1.25)
+          artistScore = artistScore + (artists[i].popularity * 1.25)
+          happyScore = happyScore + (features[i].valence * 1.25)
+          danceScore = danceScore + (features[i].danceability * 1.25)
+          energyScore = energyScore + (features[i].energy * 1.25)
+        } else if (i < 30) {
+          songScore = songScore + songs[i].popularity
+          artistScore = artistScore + artists[i].popularity
+          happyScore = happyScore + features[i].valence
+          danceScore = danceScore + features[i].danceability
+          energyScore = energyScore + features[i].energy
+        } else if (i < 40) {
+          songScore = songScore + (songs[i].popularity * 0.75)
+          artistScore = artistScore + (artists[i].popularity * 0.75)
+          happyScore = happyScore + (features[i].valence * 0.75)
+          danceScore = danceScore + (features[i].danceability * 0.75)
+          energyScore = energyScore + (features[i].energy * 0.75)
+        } else {
+          songScore = songScore + (songs[i].popularity * 0.5)
+          artistScore = artistScore + (artists[i].popularity * 0.5)
+          happyScore = happyScore + (features[i].valence * 0.5)
+          danceScore = danceScore + (features[i].danceability * 0.5)
+          energyScore = energyScore + (features[i].energy * 0.5)
+        }
       }
     }
 
@@ -91,9 +97,10 @@ class ScoreService {
     scores[0] = popScore
 
     // scaling happyScore, danceScore, and energyScore
-    happyScore = happyScore / 50
-    danceScore = danceScore / 50
-    energyScore = energyScore / 50
+    total = total - nulls
+    happyScore = happyScore / total
+    danceScore = danceScore / total
+    energyScore = energyScore / total
     happyScore = happyScore * 100
     danceScore = danceScore * 100
     energyScore = energyScore * 100

@@ -32,9 +32,15 @@ class ChartService {
       })
 
     for (i = 0; i < limit; i++) {
-      songs[i].valence = (features[i].valence * 100).toFixed(0)
-      songs[i].danceability = (features[i].danceability * 100).toFixed(0)
-      songs[i].energy = (features[i].energy * 100).toFixed(0)
+      if (features[i] == null) {
+        songs[i].valence = 'n/a'
+        songs[i].danceability = 'n/a'
+        songs[i].energy = 'n/a'
+      } else {
+        songs[i].valence = (features[i].valence * 100).toFixed(0)
+        songs[i].danceability = (features[i].danceability * 100).toFixed(0)
+        songs[i].energy = (features[i].energy * 100).toFixed(0)
+      }
       songs[i].rank = i + 1
     }
 
