@@ -14,7 +14,7 @@ RUN apt update -y \
     && cd client \
     && npm install \
     && npm run build \
-    && chown -R app:app /app
+    && chown -R app:app /app 
     # && mkdir /certs \
     # && chown app:app /certs \
     # && chmod +x /app/copyCerts.sh
